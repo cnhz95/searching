@@ -62,7 +62,7 @@ void Time_measurements::measure(const Algorithm& searching) {
             m_duration = m_end - m_start;
             m_times.push_back(m_duration.count() / m_sample_size);
         }
-        m_results.push_back({ size, mean(), std_dev() });
+        m_results.push_back({size, mean(), stdev() });
         m_times.clear();
         std::cout << hit_count << '\n' << miss_count << '\n';
     }
@@ -84,7 +84,7 @@ double Time_measurements::mean() {
     return m_mean = std::accumulate(m_times.begin(), m_times.end(), 0.0) / m_sample_size;
 }
 
-double Time_measurements::std_dev() {
+double Time_measurements::stdev() {
     double square_sum = std::accumulate(m_times.begin(), m_times.end(), 0.0, [=](double sum, const double x) -> double {
         return sum += std::pow(x - m_mean, 2);
     });

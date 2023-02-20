@@ -32,7 +32,7 @@ public:
 
 private:
     double mean();
-    double std_dev();
+    double stdev();
     void export_data(const Algorithm& searching);
     std::vector<int> generate_values();
 
