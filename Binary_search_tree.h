@@ -11,7 +11,7 @@ public:
     Binary_search_tree() = default;
 
     template<typename RandomIt>
-    Binary_search_tree(RandomIt first, RandomIt last) : m_root(add(first, last)) {}
+    Binary_search_tree(RandomIt first, RandomIt last) : m_root(insert(first, last)) {}
 
     bool find(T elem) const {
         return find(m_root, elem);
@@ -28,14 +28,14 @@ private:
     std::unique_ptr<Node> m_root;
 
     template<typename RandomIt>
-    std::unique_ptr<Node> add(RandomIt first, RandomIt last) {
+    std::unique_ptr<Node> insert(RandomIt first, RandomIt last) {
         if (first >= last) {
             return nullptr;
         }
         RandomIt middle = first + (std::distance(first, last) >> 1);
         std::unique_ptr<Node> root = std::make_unique<Node>(*middle);
-        root->m_left = add(first, middle);
-        root->m_right = add(std::next(middle), last);
+        root->m_left = insert(first, middle);
+        root->m_right = insert(std::next(middle), last);
         return root;
     }
 
