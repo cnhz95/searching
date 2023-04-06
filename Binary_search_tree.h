@@ -28,7 +28,7 @@ private:
     std::unique_ptr<Node> m_root;
 
     template<typename RandomIt>
-    std::unique_ptr<Node> insert(RandomIt first, RandomIt last) {
+    std::unique_ptr<Node> insert(RandomIt first, RandomIt last) const {
         if (first >= last) {
             return nullptr;
         }
